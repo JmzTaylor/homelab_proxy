@@ -1,0 +1,45 @@
+iframe {
+    height: 100vh;
+    width: 100%;
+}
+
+.link, .nav-item {
+    cursor: pointer;
+}
+
+.card {
+    width: 40%;
+    margin: 0 auto 2px auto;
+    float: none;
+}
+
+@media (max-width: 991.98px) {
+    .card {
+        width: 80%;
+    }
+}
+
+.dropdownImg {
+    width: 25px;
+    margin: 10px;
+}
+
+.bi-pencil-square, .bi-trash {
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+.image {
+    margin:1rem;
+}
+
+.dropdown-menu {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+#main_content {
+    margin-top: 20px;
+    padding-right: unset;
+    padding-left: unset;
+}

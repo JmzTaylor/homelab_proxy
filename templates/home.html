@@ -1,0 +1,25 @@
+<ul class="list-group" id="sortableList">
+    {% for tile in tiles %}
+    <div class="card" data-id="{{ tile.id }}">
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col link" onclick="loadFrame('{{ tile.tile_url }}')">
+                    <div class="float-start">
+                        <img class="image" src="{{ tile.tile_image }}" height="23px" alt="{{ tile.tile_name }}"/>
+                        {{ tile.tile_name }}
+                    </div>
+                </div>
+                <div class="col align-self-center">
+                    <div class="float-end">
+                        <i class="bi bi-pencil-square" onclick="launchEdit('{{ tile.id }}')" data-toggle="tooltip"
+                           data-placement="bottom" title="Edit"></i>
+                        <i class="bi bi-trash" onclick="deleteItem('{{ tile.id }}')" data-toggle="tooltip"
+                           data-placement="bottom" title="Delete"></i>
+                        <i class="bi bi-grip-horizontal"></i>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </div>
+    {% endfor %}
+</ul>

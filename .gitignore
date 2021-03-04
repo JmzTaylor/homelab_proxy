@@ -1,0 +1,5 @@
+.idea
+database.db
+vendor
+composer.phar
+composer.lock
