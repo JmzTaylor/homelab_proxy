@@ -7,7 +7,7 @@ Only caveat to using this, is that if you host this on public facing server and 
 ![Screenshot1](https://github.com/JmzTaylor/homelab_proxy/blob/master/screenshots/screen1.PNG)
 ![Screenshot2](https://github.com/JmzTaylor/homelab_proxy/blob/master/screenshots/screen2.PNG)
 ![Screenshot3](https://github.com/JmzTaylor/homelab_proxy/blob/master/screenshots/screen3.PNG)
-![Screenshot4](https://github.com/JmzTaylor/homelab_proxy/blob/master/screenshots/screen3.PNG)
+![Screenshot4](https://github.com/JmzTaylor/homelab_proxy/blob/master/screenshots/screen4.PNG)
 
 # Usage:
 
