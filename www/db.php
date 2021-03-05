@@ -8,6 +8,7 @@ class db {
         $this->db = new SQLite3($database_name);
         $query = "CREATE TABLE IF NOT EXISTS tiles (id INTEGER PRIMARY KEY AUTOINCREMENT, tile_name VARCHAR(50) NOT NULL, tile_url VARCHAR(50) NOT NULL, tile_image VARCHAR(50), tile_order INTEGER NOT NULL)";
         $this->db->exec($query);
+        $query = "CREATE TABLE IF NOT EXISTS settings(id INTEGER PRIMARY KEY )"
     }
 
     function getTile($id) {
@@ -17,14 +18,14 @@ class db {
     }
 
     function addNewTile($tile_name, $tile_url, $tile_image) {
-//        $query = "SELECT MAX(tile_order) FROM tiles";
-//        $count = $this->db->querySingle($query);
-//        $count++;
+        $query = "SELECT MAX(tile_order) FROM tiles";
+        $count = $this->db->querySingle($query);
+        $count++;
         $query = $this->db->prepare("INSERT INTO tiles (tile_name, tile_url, tile_image, tile_order) VALUES (:tile_name, :tile_url, :tile_image, :tile_order)");
         $query->bindValue(':tile_name', $tile_name, SQLITE3_TEXT);
         $query->bindValue(':tile_url', $tile_url, SQLITE3_TEXT);
         $query->bindValue(':tile_image', $tile_image, SQLITE3_TEXT);
-        $query->bindValue(':tile_order', 0, SQLITE3_INTEGER);
+        $query->bindValue(':tile_order', $count, SQLITE3_INTEGER);
         $query->execute();
     }
 

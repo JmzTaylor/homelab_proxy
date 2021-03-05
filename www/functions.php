@@ -40,7 +40,7 @@ function getImages(): array {
     $baseImgPath = "img/";
     if ($handle = opendir($baseImgPath)) {
         while (false !== ($entry = readdir($handle))) {
-            if ($entry != "." && $entry != ".." && $entry != "theme-light-dark.png") {
+            if ($entry != "." && $entry != ".." && $entry != "theme-light-dark.png" && $entry != "Icon.png") {
                 if (isImage($baseImgPath . $entry)) {
                     array_push($images,
                         array(
