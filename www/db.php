@@ -16,19 +16,19 @@ class db {
         return $query->execute()->fetchArray(SQLITE3_ASSOC);
     }
 
-    function addNewTile($tile_name, $tile_url, $tile_image): SQLite3Result {
-        $query = "SELECT MAX(tile_order) FROM tiles";
-        $count = $this->db->querySingle($query);
-        $count++;
+    function addNewTile($tile_name, $tile_url, $tile_image) {
+//        $query = "SELECT MAX(tile_order) FROM tiles";
+//        $count = $this->db->querySingle($query);
+//        $count++;
         $query = $this->db->prepare("INSERT INTO tiles (tile_name, tile_url, tile_image, tile_order) VALUES (:tile_name, :tile_url, :tile_image, :tile_order)");
         $query->bindValue(':tile_name', $tile_name, SQLITE3_TEXT);
         $query->bindValue(':tile_url', $tile_url, SQLITE3_TEXT);
         $query->bindValue(':tile_image', $tile_image, SQLITE3_TEXT);
-        $query->bindValue(':tile_order', (int)$count, SQLITE3_INTEGER);
-        return $query->execute();
+        $query->bindValue(':tile_order', 0, SQLITE3_INTEGER);
+        $query->execute();
     }
 
-    function updateTile($id, $tile_name, $tile_url, $tile_image, $tile_order): SQLite3Result {
+    function updateTile($id, $tile_name, $tile_url, $tile_image, $tile_order) {
         $query = $this->db->prepare("UPDATE tiles SET tile_name = :tile_name, tile_url = :tile_url, tile_image = :tile_image, tile_order = :tile_order WHERE id=:id");
         $query->bindValue(':tile_name', $tile_name, SQLITE3_TEXT);
         $query->bindValue(':tile_url', $tile_url, SQLITE3_TEXT);
@@ -49,7 +49,7 @@ class db {
         return $data;
     }
 
-    function deleteTile($id): SQLite3Result {
+    function deleteTile($id) {
         $query = $this->db->prepare("DELETE FROM tiles WHERE id=:id");
         $query->bindValue(':id', $id, SQLITE3_INTEGER);
         return $query->execute();

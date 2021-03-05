@@ -14,13 +14,12 @@ $twig = new Environment($loader);
 
 Flight::set('twig', $twig);
 
-Flight::route('/(@fail)', function ($fail) {
+Flight::route('/', function () {
     $db = new db();
     echo Flight::get('twig')->render('index.html',
         [
             'tiles' => $db->getTiles(),
-            'images' => getImages(),
-            'fail' => $fail
+            'images' => getImages()
         ]
     );
 });
@@ -31,6 +30,7 @@ Flight::route('POST /addTile', function () {
     $tile_url = Flight::request()->data['tile_url'];
     $tile_image = Flight::request()->data['tile_image'];
     $db->addNewTile($tile_name, $tile_url, $tile_image);
+    Flight::redirect('/');
 });
 
 Flight::route('POST /updateTile', function () {

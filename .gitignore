@@ -1,5 +1,5 @@
 .idea
-database.db
-vendor
-composer.phar
-composer.lock
+www/database.db
+www/vendor
+www/composer.phar
+www/composer.lock
