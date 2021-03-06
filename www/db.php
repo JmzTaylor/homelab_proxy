@@ -8,7 +8,7 @@ class db {
         $this->db = new SQLite3($database_name);
         $query = "CREATE TABLE IF NOT EXISTS tiles (id INTEGER PRIMARY KEY AUTOINCREMENT, tile_name VARCHAR(50) NOT NULL, tile_url VARCHAR(50) NOT NULL, tile_image VARCHAR(50), tile_order INTEGER NOT NULL)";
         $this->db->exec($query);
-        $query = "CREATE TABLE IF NOT EXISTS settings(id INTEGER PRIMARY KEY )"
+        $query = "CREATE TABLE IF NOT EXISTS settings(id INTEGER PRIMARY KEY AUTOINCREMENT, setting VAR_CHAR(50) NOT NULL, value INTEGER NOT NULL)";
     }
 
     function getTile($id) {
