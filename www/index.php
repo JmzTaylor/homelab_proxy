@@ -19,7 +19,8 @@ Flight::route('/', function () {
     echo Flight::get('twig')->render('index.html',
         [
             'tiles' => $db->getTiles(),
-            'images' => getImages()
+            'images' => getImages(),
+            'settings' => $db->getSettings()
         ]
     );
 });
@@ -60,6 +61,17 @@ Flight::route('POST /updateOrder', function () {
     $db = new db();
     $db->updateOrder($array);
     echo json_encode(array("success" => "true"));
+});
+
+Flight::route('/getSettings', function () {
+    $db = new db();
+    echo json_encode($db->getSettings());
+});
+
+Flight::route('POST /saveSettings', function () {
+    $db = new db();
+    $db->updateSettings(Flight::request()->data->getData());
+    Flight::redirect('/');
 });
 
 Flight::start();

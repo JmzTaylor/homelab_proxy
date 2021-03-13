@@ -1,5 +1,9 @@
-function loadFrame(link) {
-    $('#main_content').html("<iframe src='" + link + "'></iframe>");
+function loadFrame(link, settings) {
+    if (settings === '0') {
+        $('#main_content').html("<iframe src='" + link + "'></iframe>");
+    } else {
+        window.open(link, '_blank');
+    }
 }
 
 $('.dropdown-menu li a').on('click', function () {
@@ -7,8 +11,20 @@ $('.dropdown-menu li a').on('click', function () {
     $("#image_preview").attr("src", "img/" + $(this).text().trim() + ".png");
 });
 
+function launchSettings() {
+    $.ajax({
+        url: '/getSettings',
+        type: 'get',
+        dataType: 'JSON',
+        success: function (response) {
+            $("#settingsModal option[id='" + response.launchMethod + "']").attr("selected", "selected");
+            $('#settingsModal').modal('show');
+        }
+    });
+}
+
 function deleteItem(id) {
-    $('#deleteDialog').modal("show");
+    $('#deleteModal').modal("show");
     $("#deleteButton").click(function () {
         $.ajax({
             url: '/deleteTile/' + id,
@@ -36,7 +52,7 @@ function launchEdit(id) {
             $("#tile_name").val(response['tile_name']);
             $("#tile_url").val(response['tile_url']);
             $("#tile_order").val(response['tile_order']);
-            $('#addTileDialog').modal('show');
+            $('#addTileModal').modal('show');
         }
     });
 }
@@ -78,10 +94,7 @@ Sortable.create(sortableList, {
         $.ajax({
             type: "POST",
             url: "/updateOrder",
-            data: {data: this.toArray()},
-            success: function (response) {
-
-            }
+            data: {data: this.toArray()}
         });
     },
 });

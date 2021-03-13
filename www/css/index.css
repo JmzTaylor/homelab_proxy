@@ -3,7 +3,7 @@ iframe {
     width: 100%;
 }
 
-.link, .nav-item {
+.link, .nav-item, .bi-pencil-square, .bi-trash, .bi-gear-fill {
     cursor: pointer;
 }
 
@@ -26,11 +26,17 @@ iframe {
 
 .bi-pencil-square, .bi-trash {
     margin-right: 1rem;
-    cursor: pointer;
 }
 
 .image {
     margin:1rem;
+}
+
+.bi-gear-fill {
+    font-size: 1.3rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    color: white;
 }
 
 .dropdown-menu {

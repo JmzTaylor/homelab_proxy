@@ -1,0 +1,50 @@
+<div class="modal fade" id="addTileModal" tabindex="-1" aria-labelledby="addTileModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Tile</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/addTile" method="post" id="form" enctype="multipart/form-data">
+                <input type="hidden" id="id" name="id"/>
+                <input type="hidden" id="tile_order" name="tile_order">
+                <input type="hidden" id="tile_image" name="tile_image">
+                <div class="modal-body">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="tile_name" name="tile_name" placeholder="Tile Name"
+                               required>
+                        <label for="tile_name" class="form-label">Tile Name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="url" class="form-control" id="tile_url" placeholder="http(s)://example.com"
+                               name="tile_url" required>
+                        <label for="tile_url" class="form-label">Tile URL</label>
+                    </div>
+                    <div class="mb-3">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            Choose Icon
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            {% for image in images %}
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <img src="{{ image.image }}" class="dropdownImg" alt="{{ image.name }}"/>
+                                    {{ image.name }}
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="mb-3">
+                        <img src="" id="image_preview" height="50" alt="image_preview">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="closeAdd" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

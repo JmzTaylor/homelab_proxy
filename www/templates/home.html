@@ -3,7 +3,7 @@
     <div class="card" data-id="{{ tile.id }}">
         <li class="list-group-item">
             <div class="row">
-                <div class="col link" onclick="loadFrame('{{ tile.tile_url }}')">
+                <div class="col link" onclick="loadFrame('{{ tile.tile_url }}', '{{ settings.launchMethod }}')">
                     <div class="float-start">
                         <img class="image" src="{{ tile.tile_image }}" height="23px" alt="{{ tile.tile_name }}"/>
                         {{ tile.tile_name }}

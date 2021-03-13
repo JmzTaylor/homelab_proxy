@@ -7,7 +7,7 @@
           integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-darkmode@0.7.0/dist/darktheme.css"/>
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="../css/index.css">
     <title>Jmz Home "Proxy"</title>
 </head>
 <body>
@@ -25,91 +25,27 @@
                     <a class="nav-link active" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="modal" data-bs-target="#addTileDialog">Add Tile</a>
+                    <a class="nav-link" data-bs-toggle="modal" data-bs-target="#addTileModal">Add Tile</a>
                 </li>
             </ul>
             <span class="navbar-text">
                 <div class="form-check form-switch">
-                    <label class="form-check-label" for="dark_mode"><img src="img/theme-light-dark.png" alt="lightdark"/></label>
+                    <label class="form-check-label" for="dark_mode"><img src="../img/theme-light-dark.png" alt="lightdark"/></label>
                     <input class="form-check-input" type="checkbox" name="dark_mode" id="dark_mode">
                 </div>
             </span>
+            <i class="bi bi-gear-fill" onclick="launchSettings()"></i>
         </div>
     </div>
 </nav>
 
 <div class="container-fluid" id="main_content">
     {% include 'home.html' %}
+    {% include 'settings_modal.html' %}
+    {% include 'add_tile_modal.html' %}
+    {% include 'delete_modal.html' %}
 </div>
 
-<div class="modal fade" id="addTileDialog" tabindex="-1" aria-labelledby="addTileDialog" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Tile</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="/addTile" method="post" id="form" enctype="multipart/form-data">
-                <input type="hidden" id="id" name="id"/>
-                <input type="hidden" id="tile_order" name="tile_order">
-                <input type="hidden" id="tile_image" name="tile_image">
-                <div class="modal-body">
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="tile_name" name="tile_name" placeholder="Tile Name"
-                               required>
-                        <label for="tile_name" class="form-label">Tile Name</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="url" class="form-control" id="tile_url" placeholder="http(s)://example.com"
-                               name="tile_url" required>
-                        <label for="tile_url" class="form-label">Tile URL</label>
-                    </div>
-                    <div class="mb-3">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                            Choose Icon
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            {% for image in images %}
-                            <li>
-                                <a class="dropdown-item" href="#">
-                                    <img src="{{ image.image }}" class="dropdownImg" alt="{{ image.name }}"/>
-                                    {{ image.name }}
-                                </a>
-                            </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                    <div class="mb-3">
-                        <img src="" id="image_preview" height="50">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" id="closeAdd" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="deleteDialog" tabindex="-1" role="dialog" aria-labelledby="deleteDialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="deleteDialogLabel">Delete Tile</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Are you sure you want to delete this tile?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" id="deleteButton" class="btn btn-primary">Delete</button>
-            </div>
-        </div>
-    </div>
-</div>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"
         integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi"
@@ -118,6 +54,6 @@
         integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG"
         crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/gh/RubaXa/Sortable/Sortable.min.js"></script>
-<script src="js/index.js"></script>
+<script src="../js/index.js"></script>
 </body>
 </html>
