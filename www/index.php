@@ -90,7 +90,7 @@ Flight::route('POST /uploadImage', function () {
     if (file_exists($final)) {
         $final = "img/" . $path_parts['filename'] . date("His") . '.' . strtolower($path_parts['extension']);
     } else {
-        $final = "img/" . $path_parts['filename'] . strtolower($path_parts['extension']);
+        $final = "img/" . $path_parts['filename'] . '.' . strtolower($path_parts['extension']);
     }
     move_uploaded_file($file, $final);
 });
