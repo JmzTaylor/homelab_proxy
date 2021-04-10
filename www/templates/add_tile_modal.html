@@ -21,20 +21,32 @@
                         <label for="tile_url" class="form-label">Tile URL</label>
                     </div>
                     <div class="mb-3">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                            Choose Icon
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            {% for image in images %}
-                            <li>
-                                <a class="dropdown-item" href="#">
-                                    <img src="{{ image.image }}" class="dropdownImg" alt="{{ image.name }}"/>
-                                    {{ image.name }}
-                                </a>
-                            </li>
-                            {% endfor %}
-                        </ul>
+                        <div class="row">
+                            <div class="col">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                    Choose Icon
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    {% for image in images %}
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <img src="{{ image.image }}" class="dropdownImg" alt="{{ image.name }}"/>
+                                            {{ image.name }}
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <div class="file btn btn-primary">
+                                        Or Upload File
+                                        <input type="file" name="fileUploader" id="fileUploader" class="btn btn-default file_upload">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <img src="" id="image_preview" height="50" alt="image_preview">

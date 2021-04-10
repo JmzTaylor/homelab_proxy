@@ -74,4 +74,25 @@ Flight::route('POST /saveSettings', function () {
     Flight::redirect('/');
 });
 
+Flight::route('POST /uploadImage', function () {
+    $file = Flight::request()->files['file']['tmp_name'];
+    $file_name = Flight::request()->files['file']['name'];
+    $info = getimagesize($file);
+    if ($info === FALSE) {
+        die("Unable to determine image type of uploaded file");
+    }
+    if (($info[2] !== IMAGETYPE_GIF) && ($info[2] !== IMAGETYPE_JPEG) && ($info[2] !== IMAGETYPE_PNG)) {
+        die("Not a gif/jpeg/png");
+    }
+
+    $final = "img/" . $file_name;
+    $path_parts = pathinfo($file_name);
+    if (file_exists($final)) {
+        $final = "img/" . $path_parts['filename'] . date("His") . '.' . strtolower($path_parts['extension']);
+    } else {
+        $final = "img/" . $path_parts['filename'] . strtolower($path_parts['extension']);
+    }
+    move_uploaded_file($file, $final);
+});
+
 Flight::start();

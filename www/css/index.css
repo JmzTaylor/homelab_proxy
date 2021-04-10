@@ -49,3 +49,21 @@ iframe {
     padding-right: unset;
     padding-left: unset;
 }
+
+.file {
+    position: relative;
+    overflow: hidden;
+}
+
+.file_upload {
+    position: absolute;
+    font-size: 50px;
+    opacity: 0;
+    right: 0;
+    top: 0;
+}
+
+#upload_form {
+    width: 50%;
+    margin-top: 30px;
+}

@@ -79,6 +79,23 @@ $(function () {
         $('input').val('');
     });
     $('[data-toggle="tooltip"]').tooltip();
+
+    $(".file").change(function() {
+        let formData = new FormData();
+        let file = $('#fileUploader')[0].files[0];
+        formData.append('file', file);
+        $.ajax({
+            url : '/uploadImage',
+            type : 'POST',
+            data : formData,
+            processData: false,
+            contentType: false,
+            success : function(data) {
+                $("#tile_image").val("img/" + file.name);
+                $("#image_preview").attr("src", "img/" + file.name);
+            }
+        });
+    });
 });
 
 Sortable.create(sortableList, {
