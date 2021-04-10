@@ -15,4 +15,4 @@ FROM trafex/alpine-nginx-php7
 USER root
 RUN apk --no-cache add php7-sqlite3 php7-exif
 USER nobody
-COPY --chown=nginx --from=composer /app /var/www/html
+COPY --chown=nobody --from=composer /app /var/www/html
