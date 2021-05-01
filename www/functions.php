@@ -35,13 +35,18 @@ function isImage(string $path): bool {
     return (!!$image);
 }
 
+function isSvg($path) {
+    $mimeType = mime_content_type($path);
+    return preg_match("/SVG/i", $mimeType);
+}
+
 function getImages(): array {
     $images = array();
     $baseImgPath = "img/";
     if ($handle = opendir($baseImgPath)) {
         while (false !== ($entry = readdir($handle))) {
             if ($entry != "." && $entry != ".." && $entry != "theme-light-dark.png" && $entry != "Icon.png") {
-                if (isImage($baseImgPath . $entry)) {
+                if (isImage($baseImgPath . $entry) || isSvg($baseImgPath . $entry)) {
                     array_push($images,
                         array(
                             "name" => pathinfo($entry, PATHINFO_FILENAME),

@@ -77,12 +77,9 @@ Flight::route('POST /saveSettings', function () {
 Flight::route('POST /uploadImage', function () {
     $file = Flight::request()->files['file']['tmp_name'];
     $file_name = Flight::request()->files['file']['name'];
-    $info = getimagesize($file);
-    if ($info === FALSE) {
-        die("Unable to determine image type of uploaded file");
-    }
-    if (($info[2] !== IMAGETYPE_GIF) && ($info[2] !== IMAGETYPE_JPEG) && ($info[2] !== IMAGETYPE_PNG)) {
-        die("Not a gif/jpeg/png");
+
+    if (!isImage($file) && !isSvg($file)) {
+        die("Not a gif/jpeg/png/svg");
     }
 
     $final = "img/" . $file_name;
